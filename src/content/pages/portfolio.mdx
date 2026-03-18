@@ -1,0 +1,58 @@
+import { Card, Grid, Tag, TagList } from '../../components/common/UIComponents';
+
+export const projects = [
+  {
+    title: '3D Portfolio Maze',
+    desc: 'An interactive 3D portfolio website featuring a navigable maze built with Three.js and React Three Fiber.',
+    tags: ['Three.js', 'React', 'TypeScript'],
+    color: '#6c5ce7',
+  },
+  {
+    title: 'E-Commerce Platform',
+    desc: 'A full-stack e-commerce solution with real-time inventory, payment processing, and an admin dashboard.',
+    tags: ['Next.js', 'Stripe', 'PostgreSQL'],
+    color: '#00cec9',
+  },
+  {
+    title: 'Weather Dashboard',
+    desc: 'A beautiful weather application with animated visualizations, 7-day forecasts, and location-based services.',
+    tags: ['React', 'D3.js', 'OpenWeather API'],
+    color: '#fd79a8',
+  },
+  {
+    title: 'Task Management App',
+    desc: 'A collaborative task management tool with real-time updates, drag-and-drop, and team workspaces.',
+    tags: ['React', 'Firebase', 'Framer Motion'],
+    color: '#fdcb6e',
+  },
+  {
+    title: 'Music Visualizer',
+    desc: 'A real-time audio visualizer using Web Audio API and WebGL shaders for stunning visual effects.',
+    tags: ['WebGL', 'GLSL', 'Web Audio API'],
+    color: '#e17055',
+  },
+  {
+    title: 'Blog Platform',
+    desc: 'A statically generated blog with MDX support, full-text search, and automated social media previews.',
+    tags: ['Next.js', 'MDX', 'Vercel'],
+    color: '#00b894',
+  },
+];
+
+<Grid columns={2}>
+  {projects.map((project) => (
+    <Card key={project.title} className="project-card" accentColor={project.color}>
+      <h3>{project.title}</h3>
+      <p>{project.desc}</p>
+      <TagList>
+        {project.tags.map((tag) => (
+          <Tag key={tag}>{tag}</Tag>
+        ))}
+      </TagList>
+      <div className="project-links">
+        <button className="project-link">View Project</button>
+        <button className="project-link">Source Code</button>
+      </div>
+    </Card>
+  ))}
+</Grid>

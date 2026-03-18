@@ -1,0 +1,201 @@
+/* ===== HUD Overlay ===== */
+.hud-overlay {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-lg);
+}
+
+.hud-overlay > * {
+  pointer-events: auto;
+}
+
+/* Menu Button */
+.hud-menu-btn {
+  position: absolute;
+  top: var(--space-lg);
+  right: var(--space-lg);
+  padding: var(--space-sm) var(--space-lg);
+  background: rgba(30, 30, 45, 0.9);
+  color: #ffffff;
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  border-radius: var(--radius-md);
+  font-size: 0.9rem;
+  font-weight: 600;
+  letter-spacing: 0.05em;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.5);
+  transition: all var(--transition-base);
+  cursor: pointer;
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+.hud-menu-btn:hover {
+  background: var(--accent-primary);
+  border-color: var(--accent-secondary);
+  transform: translateY(-2px);
+  box-shadow: 0 0 20px var(--accent-glow);
+}
+
+/* Navigation Menu */
+.hud-menu {
+  position: absolute;
+  top: calc(var(--space-lg) + 48px);
+  right: var(--space-lg);
+  width: 220px;
+  padding: var(--space-lg);
+  background: rgba(10, 10, 15, 0.85);
+  animation: menuSlideIn 0.3s var(--transition-slow) forwards;
+}
+
+@keyframes menuSlideIn {
+  from {
+    opacity: 0;
+    transform: translateY(-8px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.hud-menu-title {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  color: var(--text-secondary);
+  margin-bottom: var(--space-md);
+}
+
+.hud-menu-items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-sm);
+}
+
+.hud-menu-item {
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  padding: var(--space-sm) var(--space-md);
+  background: transparent;
+  color: var(--text-primary);
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  font-size: 0.9rem;
+  cursor: pointer;
+  transition: all var(--transition-base);
+  text-align: left;
+}
+
+.hud-menu-item:hover {
+  background: rgba(255, 255, 255, 0.05);
+  border-color: var(--portal-color);
+  color: var(--portal-color);
+  transform: translateX(4px);
+}
+
+.hud-menu-icon {
+  font-size: 1.1rem;
+}
+
+/* Portal Prompt */
+.hud-portal-prompt {
+  position: absolute;
+  bottom: 80px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-md);
+  padding: var(--space-md) var(--space-xl);
+  background: rgba(10, 10, 15, 0.85);
+  animation: promptPulse 2s ease-in-out infinite, promptSlideUp 0.4s var(--transition-slow) forwards;
+  border-color: var(--portal-color);
+  white-space: nowrap;
+}
+
+@keyframes promptSlideUp {
+  from {
+    opacity: 0;
+    transform: translateX(-50%) translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+@keyframes promptPulse {
+  0%, 100% {
+    box-shadow: 0 0 20px rgba(108, 92, 231, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 30px rgba(108, 92, 231, 0.2);
+  }
+}
+
+.hud-prompt-icon {
+  font-size: 1.5rem;
+}
+
+.hud-prompt-text {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.hud-prompt-label {
+  font-size: 0.8rem;
+  color: var(--text-secondary);
+}
+
+.hud-prompt-label kbd {
+  display: inline-block;
+  padding: 1px 6px;
+  background: rgba(255, 255, 255, 0.1);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 4px;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-primary);
+}
+
+.hud-prompt-name {
+  font-size: 1rem;
+  font-weight: 600;
+}
+
+/* Controls Hint */
+.hud-controls {
+  position: absolute;
+  bottom: var(--space-lg);
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  align-items: center;
+  gap: var(--space-sm);
+  font-size: 0.75rem;
+  color: var(--text-muted);
+  letter-spacing: 0.05em;
+  pointer-events: none;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+  .hud-menu {
+    width: 180px;
+  }
+
+  .hud-controls {
+    font-size: 0.65rem;
+  }
+
+  .hud-portal-prompt {
+    padding: var(--space-sm) var(--space-md);
+  }
+}

@@ -1,0 +1,38 @@
+# React Basics: Understanding the Virtual DOM
+
+**March 18, 2026**
+
+React fundamentally revolutionized how we build UIs on the web. At the heart of React is the **Virtual DOM**, an elegant abstraction that allows developers to write declarative code while React figures out the most efficient way to manipulate the actual browser DOM.
+
+## The Problem with the Real DOM
+
+Manipulating the Real Document Object Model (DOM) is an expensive operation. Every time a node is inserted, deleted, or altered, the browser has to recalculate CSS, run layout, and repaint the screen. In complex Single Page Applications (SPAs), doing this continuously causes significant performance bottlenecks.
+
+## Enter the Virtual DOM
+
+The Virtual DOM is simply a JavaScript object—a lightweight copy of the Real DOM. It lives entirely in memory.
+
+When you write a React component:
+1. React builds an entire Virtual DOM tree.
+2. When state or props change, React builds a *new* Virtual DOM tree.
+3. React then runs a **diffing algorithm** (reconciliation) to compare the *new* tree with the *old* tree.
+4. It calculates the minimum amount of changes necessary.
+5. It applies those precise changes to the actual browser DOM in a single batch update.
+
+## Declarative vs Imperative
+
+Because of this system, you no longer have to write imperative steps like:
+```js
+const element = document.getElementById('my-el');
+element.classList.add('active');
+element.innerText = 'Hello';
+```
+
+Instead, you write what the UI *should* look like at any given state, and React handles the transition:
+```jsx
+<div className={isActive ? 'active' : ''}>
+  {isActive ? 'Hello' : 'Goodbye'}
+</div>
+```
+
+The Virtual DOM handles the heavy lifting of figuring out *how* to get from state A to state B efficiently.

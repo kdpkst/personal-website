@@ -1,0 +1,14 @@
+import { Card } from '../../components/common/UIComponents';
+import { Link } from 'react-router-dom';
+
+<div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
+  <Link to="/blog/react-basics" style={{ textDecoration: 'none' }}>
+    <Card className="project-card" accentColor="#00cec9">
+      <h3>React Basics: Understanding the Virtual DOM</h3>
+      <p style={{ color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
+        A deep dive into how React handles state changes using its virtual DOM diffing algorithm, making updates fast and declarative.
+      </p>
+      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Posted on Mar 18, 2026 • 5 min read</div>
+    </Card>
+  </Link>
+</div>
