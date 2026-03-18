@@ -19,35 +19,42 @@ export default function HUD({ activePortal }: HUDProps) {
 
   return (
     <div className="hud-overlay">
-      {/* Menu Button */}
-      <button
-        className="hud-menu-btn glass"
-        onClick={() => setMenuOpen(!menuOpen)}
-        id="menu-toggle"
+      {/* Menu Container for Hover */}
+      <div 
+        className="hud-menu-container"
+        onMouseEnter={() => setMenuOpen(true)}
+        onMouseLeave={() => setMenuOpen(false)}
       >
-        {menuOpen ? "✕" : "☰"} Menu
-      </button>
+        {/* Menu Button */}
+        <button
+          className="hud-menu-btn glass"
+          onClick={() => setMenuOpen(!menuOpen)}
+          id="menu-toggle"
+        >
+          {menuOpen ? "✕" : "☰"} Menu
+        </button>
 
-      {/* Navigation Menu */}
-      {menuOpen && (
-        <div className="hud-menu glass" id="nav-menu">
-          <h3 className="hud-menu-title">Navigate</h3>
-          <div className="hud-menu-items">
-            {navItems.map((item) => (
-              <button
-                key={item.route}
-                className="hud-menu-item"
-                style={{ "--portal-color": item.color } as React.CSSProperties}
-                onClick={() => navigate(item.route)}
-                id={`nav-${item.route.slice(1)}`}
-              >
-                <span className="hud-menu-icon">{item.icon}</span>
-                <span>{item.label}</span>
-              </button>
-            ))}
+        {/* Navigation Menu */}
+        {menuOpen && (
+          <div className="hud-menu glass" id="nav-menu">
+            <h3 className="hud-menu-title">Navigate</h3>
+            <div className="hud-menu-items">
+              {navItems.map((item) => (
+                <button
+                  key={item.route}
+                  className="hud-menu-item"
+                  style={{ "--portal-color": item.color } as React.CSSProperties}
+                  onClick={() => navigate(item.route)}
+                  id={`nav-${item.route.slice(1)}`}
+                >
+                  <span className="hud-menu-icon">{item.icon}</span>
+                  <span>{item.label}</span>
+                </button>
+              ))}
+            </div>
           </div>
-        </div>
-      )}
+        )}
+      </div>
 
       {/* Portal Prompt */}
       {activePortal && (
