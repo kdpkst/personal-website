@@ -1,5 +1,5 @@
 import PageLayout from '../components/common/PageLayout';
-import ReactBasicsContent from '../content/blogs/react-basics.mdx';
+import ReactBasicsContent from '../content/blog/react-basics.mdx';
 
 export default function BlogPost() {
   return (
