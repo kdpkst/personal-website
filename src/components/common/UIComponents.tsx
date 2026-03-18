@@ -4,22 +4,12 @@ import '../../styles/pages.css';
 interface CardProps {
   children: ReactNode;
   className?: string;
-  accentColor?: string;
+  accentColor?: string; // Kept for API compat, no longer rendered
 }
 
-export function Card({ children, className = '', accentColor }: CardProps) {
+export function Card({ children, className = '' }: CardProps) {
   return (
     <div className={`card ${className}`}>
-      {accentColor && (
-        <div
-          style={{
-            height: 3,
-            borderRadius: 2,
-            background: `linear-gradient(to right, ${accentColor}, transparent)`,
-            marginBottom: 'var(--space-sm)',
-          }}
-        />
-      )}
       {children}
     </div>
   );
