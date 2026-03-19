@@ -9,7 +9,6 @@ import {
 export const aboutPage = {
   intro:
     "I build clean, interactive web experiences with a focus on thoughtful frontend engineering, polished UI, and maintainable product work. If you share similar passions or want to collaborate on a project, I'd love to connect. Feel free to reach out!",
-  abilityTitle: "Tech Skills",
   interestsTitle: "Interests",
 };
 
@@ -83,12 +82,12 @@ export const abilityGroups = [
     items: ["TypeScript", "JavaScript", "HTML", "CSS", "SQL"],
   },
   {
-    title: "Tech Stack",
-    items: ["React", "Tailwind CSS", "Vite", "Node.js", "Three.js", "MDX"],
+    title: "Frameworks",
+    items: ["React", "Tailwind CSS", "Vite", "Spring"],
   },
   {
-    title: "Developer Tools",
-    items: ["Git", "GitHub", "pnpm", "VS Code", "Chrome DevTools", "Figma"],
+    title: "Tools & Infrastructure",
+    items: ["Redis", "Nginx", "Docker", "Git"],
   },
 ];
 
@@ -134,20 +133,23 @@ export const interests = [
   ))}
 </div>
 
-<section className="mb-16">
-  <SectionTitle className="text-center">{aboutPage.abilityTitle}</SectionTitle>
-  <Grid columns={3}>
+<section className="mb-20">
+  <div className="grid grid-cols-1 gap-6 md:grid-cols-2 lg:grid-cols-3">
     {abilityGroups.map((group) => (
-      <Card key={group.title}>
-        <h3 className="mb-6 text-[1.35rem]">{group.title}</h3>
-        <TagList className="!mt-0 !pt-0">
-          {group.items.map((item) => (
-            <Tag key={item}>{item}</Tag>
-          ))}
-        </TagList>
-      </Card>
+      <div key={group.title} className="grid h-full grid-rows-[auto_1fr] gap-4">
+        <h3 className="px-2 text-center text-[1.05rem] font-bold leading-tight tracking-[-0.01em] text-text-primary sm:text-[1.2rem]">
+          {group.title}
+        </h3>
+        <Card className="h-full justify-center !p-6 sm:!p-8">
+          <TagList className="!mt-0 !justify-center !pt-0">
+            {group.items.map((item) => (
+              <Tag key={item}>{item}</Tag>
+            ))}
+          </TagList>
+        </Card>
+      </div>
     ))}
-  </Grid>
+  </div>
 </section>
 
 <section>
