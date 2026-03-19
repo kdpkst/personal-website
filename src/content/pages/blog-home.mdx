@@ -1,24 +1,37 @@
 import { Link } from "react-router-dom";
 import { Card } from "../../components/common/UIComponents";
 
+export const blogPosts = [
+  {
+    route: "/blog/react-basics",
+    title: "React Basics: Understanding the Virtual DOM",
+    excerpt:
+      "A deep dive into how React handles state changes using its virtual DOM diffing algorithm, making updates fast and declarative.",
+    publishedAt: "Mar 18, 2026",
+    readTime: "5 min read",
+  },
+];
+
+export const blogHomePage = {
+  metaSeparator: "\u2022",
+};
+
 <div className="flex flex-col gap-4">
-  <Link
-    to="/blog/react-basics"
-    className="block no-underline hover:no-underline"
-  >
-    <Card>
-      <h3 className="mb-2 text-[1.5rem]">
-        React Basics: Understanding the Virtual DOM
-      </h3>
-      <p className="mb-2 text-text-secondary">
-        A deep dive into how React handles state changes using its virtual
-        DOM diffing algorithm, making updates fast and declarative.
-      </p>
-      <div className="flex items-center gap-2 text-[0.8rem] text-text-muted">
-        <span>Posted on Mar 18, 2026</span>
-        <span>{"\u2022"}</span>
-        <span>5 min read</span>
-      </div>
-    </Card>
-  </Link>
+  {blogPosts.map((post) => (
+    <Link
+      key={post.route}
+      to={post.route}
+      className="block no-underline hover:no-underline"
+    >
+      <Card>
+        <h3 className="mb-2 text-[1.5rem]">{post.title}</h3>
+        <p className="mb-2 text-text-secondary">{post.excerpt}</p>
+        <div className="flex items-center gap-2 text-[0.8rem] text-text-muted">
+          <span>Posted on {post.publishedAt}</span>
+          <span>{blogHomePage.metaSeparator}</span>
+          <span>{post.readTime}</span>
+        </div>
+      </Card>
+    </Link>
+  ))}
 </div>

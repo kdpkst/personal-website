@@ -60,7 +60,8 @@ Currently, `BlogPost.tsx` provides a generic container but is hardcoded to a sin
 
 ### 3. Modifying Existing Pages
 - Content for the core text-heavy pages is isolated in `src/content/pages/` (like `about.mdx` or `portfolio.mdx`).
-- Simply edit the Markdown and save. The changes flow instantly into the respective `src/pages/*.tsx` components, meaning you need little-to-no React knowledge to update your resume or portfolio entries!
+- Keep page copy, links, lists, and metadata in exported variables at the top of each `src/content/pages/*.mdx` file, then render from those variables below. This keeps page updates maintainable and consistent.
+- After updating those variables, save the file and the changes flow into the respective `src/pages/*.tsx` components.
 
 ### 4. Direct Navigation (Skip the Maze)
 If you want to add a permanent sidebar or a different navigation style that persists across the site, modify `src/components/common/HUD.tsx`. It handles the ☰ menu state and direct overlay UI.

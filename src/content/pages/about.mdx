@@ -1,64 +1,140 @@
-import { Card, Grid, SectionTitle } from "../../components/common/UIComponents";
+import {
+  Card,
+  Grid,
+  SectionTitle,
+  Tag,
+  TagList,
+} from "../../components/common/UIComponents";
 
-<p className="mx-auto mb-24 max-w-[800px] text-center text-[1.25rem] font-normal leading-[1.5] tracking-[-0.015em] text-text-secondary md:text-[1.5rem]">
-  Hi there! I&apos;m a <strong>passionate developer</strong> who loves building
-  interactive experiences on the web. I specialize in creating beautiful,
-  performant applications that push the boundaries of what&apos;s possible in
-  the browser. When I&apos;m not coding, you&apos;ll find me exploring new
-  technologies, contributing to open-source projects, or experimenting with
-  creative coding and 3D graphics.
+export const aboutPage = {
+  intro:
+    "I build clean, interactive web experiences with a focus on thoughtful frontend engineering, polished UI, and maintainable product work. If you share similar passions or want to collaborate on a project, I'd love to connect. Feel free to reach out!",
+  abilityTitle: "Tech Abilities",
+  interestsTitle: "Interests",
+};
+
+export const socialLinks = [
+  {
+    label: "Email",
+    href: "mailto:jammiechen0@gmail.com",
+    value: "jammiechen0@gmail.com",
+  },
+  {
+    label: "LinkedIn",
+    href: null,
+    value: "Add your LinkedIn URL",
+  },
+  {
+    label: "GitHub",
+    href: null,
+    value: "Add your GitHub URL",
+  },
+];
+
+export const abilityGroups = [
+  {
+    title: "Programming Languages",
+    items: ["TypeScript", "JavaScript", "HTML", "CSS", "SQL"],
+  },
+  {
+    title: "Tech Stack",
+    items: ["React", "Tailwind CSS", "Vite", "Node.js", "Three.js", "MDX"],
+  },
+  {
+    title: "Developer Tools",
+    items: ["Git", "GitHub", "pnpm", "VS Code", "Chrome DevTools", "Figma"],
+  },
+];
+
+export const interests = [
+  {
+    icon: "\u{1F4BB}",
+    label: "Software Development",
+  },
+  {
+    icon: "\u{1F512}",
+    label: "Cybersecurity",
+  },
+  {
+    icon: "\u{1F916}",
+    label: "Machine Learning",
+  },
+];
+
+export const socialLinkCardClassName =
+  "flex min-w-[220px] flex-col gap-1 rounded-full bg-bg-secondary px-5 py-3 text-left transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:shadow-card";
+
+<p className="mx-auto mb-10 max-w-[800px] text-center text-[1.2rem] font-normal leading-[1.6] tracking-[-0.015em] text-text-secondary md:text-[1.4rem]">
+  {aboutPage.intro}
 </p>
 
+<div className="mx-auto mb-16 flex max-w-[820px] flex-wrap justify-center gap-3">
+  {socialLinks.map((link) => {
+    const content = (
+      <>
+        <span className="text-[0.75rem] font-semibold uppercase tracking-[0.08em] text-text-muted">
+          {link.label}
+        </span>
+        <span className="text-[0.95rem] font-medium text-text-primary">
+          {link.value}
+        </span>
+      </>
+    );
+
+    if (!link.href) {
+      return (
+        <div
+          key={link.label}
+          className={`${socialLinkCardClassName} cursor-default opacity-70`}
+        >
+          {content}
+        </div>
+      );
+    }
+
+    return (
+      <a
+        key={link.label}
+        href={link.href}
+        className={`${socialLinkCardClassName} hover:scale-[1.02] hover:no-underline`}
+      >
+        {content}
+      </a>
+    );
+
+})}
+
+</div>
+
 <section className="mb-16">
-  <SectionTitle>What I Do</SectionTitle>
-  <Grid columns={2}>
-    <Card>
-      <h3 className="mb-2 text-[1.5rem]">{"\u{1F3A8}"} Frontend Development</h3>
-      <p className="mt-2 text-[0.9rem] leading-[1.7] text-text-secondary">
-        Crafting responsive, accessible, and visually stunning user interfaces
-        with modern frameworks and tools.
-      </p>
-    </Card>
-    <Card>
-      <h3 className="mb-2 text-[1.5rem]">
-        {"\u{1F5A5}\uFE0F"} 3D &amp; Creative Coding
-      </h3>
-      <p className="mt-2 text-[0.9rem] leading-[1.7] text-text-secondary">
-        Building immersive 3D experiences using Three.js, WebGL, and creative
-        coding techniques.
-      </p>
-    </Card>
-    <Card>
-      <h3 className="mb-2 text-[1.5rem]">{"\u26A1"} Performance</h3>
-      <p className="mt-2 text-[0.9rem] leading-[1.7] text-text-secondary">
-        Optimizing applications for speed and efficiency, from bundle size to
-        runtime performance.
-      </p>
-    </Card>
-    <Card>
-      <h3 className="mb-2 text-[1.5rem]">{"\u{1F527}"} Full-Stack</h3>
-      <p className="mt-2 text-[0.9rem] leading-[1.7] text-text-secondary">
-        Designing and building APIs, databases, and cloud infrastructure to
-        power applications end-to-end.
-      </p>
-    </Card>
+  <SectionTitle className="text-center">{aboutPage.abilityTitle}</SectionTitle>
+  <Grid columns={3}>
+    {abilityGroups.map((group) => (
+      <Card key={group.title}>
+        <h3 className="mb-6 text-[1.35rem]">{group.title}</h3>
+        <TagList className="!mt-0 !pt-0">
+          {group.items.map((item) => (
+            <Tag key={item}>{item}</Tag>
+          ))}
+        </TagList>
+      </Card>
+    ))}
   </Grid>
 </section>
 
 <section>
-  <SectionTitle>Interests</SectionTitle>
+  <SectionTitle className="text-center">
+    {aboutPage.interestsTitle}
+  </SectionTitle>
   <Grid columns={3}>
-    <Card className="items-center justify-center gap-4 !p-8 text-center">
-      <span className="text-[2.5rem]">{"\u{1F4BB}"}</span>
-      <span>Software Development</span>
-    </Card>
-    <Card className="items-center justify-center gap-4 !p-8 text-center">
-      <span className="text-[2.5rem]">{"\u{1F512}"}</span>
-      <span>Cybersecurity</span>
-    </Card>
-    <Card className="items-center justify-center gap-4 !p-8 text-center">
-      <span className="text-[2.5rem]">{"\u{1F916}"}</span>
-      <span>Machine Learning</span>
-    </Card>
+    {interests.map((interest) => (
+      <Card
+        key={interest.label}
+        className="items-center justify-center gap-4 !p-8 text-center"
+      >
+        <span className="text-[2.5rem]">{interest.icon}</span>
+        <span>{interest.label}</span>
+      </Card>
+    ))}
   </Grid>
 </section>

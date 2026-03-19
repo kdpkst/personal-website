@@ -62,7 +62,7 @@ export default function PageLayout({
 
         <footer className="mt-24 border-t border-border-subtle pb-8 pt-16 text-center">
           <p className="text-[0.85rem] text-text-muted">
-            Designed and developed by Jax. Built with React and Three.js.
+            © 2026 Designed and Developed by Jax. Built with React and Three.js.
           </p>
         </footer>
       </div>
