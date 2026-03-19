@@ -1,14 +1,24 @@
-import { Card } from '../../components/common/UIComponents';
-import { Link } from 'react-router-dom';
+import { Link } from "react-router-dom";
+import { Card } from "../../components/common/UIComponents";
 
-<div style={{ display: 'flex', flexDirection: 'column', gap: 'var(--space-md)' }}>
-  <Link to="/blog/react-basics" style={{ textDecoration: 'none' }}>
-    <Card className="project-card" accentColor="#00cec9">
-      <h3>React Basics: Understanding the Virtual DOM</h3>
-      <p style={{ color: 'var(--text-secondary)', marginBottom: 'var(--space-sm)' }}>
-        A deep dive into how React handles state changes using its virtual DOM diffing algorithm, making updates fast and declarative.
+<div className="flex flex-col gap-4">
+  <Link
+    to="/blog/react-basics"
+    className="block no-underline hover:no-underline"
+  >
+    <Card>
+      <h3 className="mb-2 text-[1.5rem]">
+        React Basics: Understanding the Virtual DOM
+      </h3>
+      <p className="mb-2 text-text-secondary">
+        A deep dive into how React handles state changes using its virtual
+        DOM diffing algorithm, making updates fast and declarative.
       </p>
-      <div style={{ fontSize: '0.8rem', color: 'var(--text-muted)' }}>Posted on Mar 18, 2026 • 5 min read</div>
+      <div className="flex items-center gap-2 text-[0.8rem] text-text-muted">
+        <span>Posted on Mar 18, 2026</span>
+        <span>{"\u2022"}</span>
+        <span>5 min read</span>
+      </div>
     </Card>
   </Link>
 </div>

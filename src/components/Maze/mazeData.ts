@@ -42,7 +42,7 @@ export interface PortalInfo {
 
 export const PORTALS: PortalInfo[] = [
   { row: 11, col: 3, route: '/about', label: 'About Me', color: '#00cec9' },
-  { row: 13, col: 9, route: '/blogs', label: 'My Blogs', color: '#fd79a8' },
+  { row: 13, col: 9, route: '/blog', label: 'My Blogs', color: '#fd79a8' },
   { row: 13, col: 13, route: '/portfolio', label: 'Portfolio', color: '#fdcb6e' },
 ];
 

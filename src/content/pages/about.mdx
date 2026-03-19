@@ -1,43 +1,45 @@
-import { Card, Grid, SectionTitle } from '../../components/common/UIComponents';
+import { Card, Grid, SectionTitle } from "../../components/common/UIComponents";
 
-<p className="about-intro">
-  Hi there! I'm a <strong>passionate developer</strong> who loves building
+<p className="mx-auto mb-24 max-w-[800px] text-center text-[1.25rem] font-normal leading-[1.5] tracking-[-0.015em] text-text-secondary md:text-[1.5rem]">
+  Hi there! I&apos;m a <strong>passionate developer</strong> who loves building
   interactive experiences on the web. I specialize in creating beautiful,
-  performant applications that push the boundaries of what's possible in
-  the browser. When I'm not coding, you'll find me exploring new
-  technologies, contributing to open-source projects, or experimenting
-  with creative coding and 3D graphics.
+  performant applications that push the boundaries of what&apos;s possible in
+  the browser. When I&apos;m not coding, you&apos;ll find me exploring new
+  technologies, contributing to open-source projects, or experimenting with
+  creative coding and 3D graphics.
 </p>
 
-<section style={{ marginBottom: 'var(--space-3xl)' }}>
+<section className="mb-16">
   <SectionTitle>What I Do</SectionTitle>
   <Grid columns={2}>
     <Card>
-      <h3>🎨 Frontend Development</h3>
-      <p style={{ color: 'var(--text-secondary)', marginTop: 'var(--space-sm)', fontSize: '0.9rem', lineHeight: 1.7 }}>
-        Crafting responsive, accessible, and visually stunning user
-        interfaces with modern frameworks and tools.
+      <h3 className="mb-2 text-[1.5rem]">{"\u{1F3A8}"} Frontend Development</h3>
+      <p className="mt-2 text-[0.9rem] leading-[1.7] text-text-secondary">
+        Crafting responsive, accessible, and visually stunning user interfaces
+        with modern frameworks and tools.
       </p>
     </Card>
     <Card>
-      <h3>🧊 3D & Creative Coding</h3>
-      <p style={{ color: 'var(--text-secondary)', marginTop: 'var(--space-sm)', fontSize: '0.9rem', lineHeight: 1.7 }}>
-        Building immersive 3D experiences using Three.js, WebGL,
-        and creative coding techniques.
+      <h3 className="mb-2 text-[1.5rem]">
+        {"\u{1F5A5}\uFE0F"} 3D &amp; Creative Coding
+      </h3>
+      <p className="mt-2 text-[0.9rem] leading-[1.7] text-text-secondary">
+        Building immersive 3D experiences using Three.js, WebGL, and creative
+        coding techniques.
       </p>
     </Card>
     <Card>
-      <h3>⚡ Performance</h3>
-      <p style={{ color: 'var(--text-secondary)', marginTop: 'var(--space-sm)', fontSize: '0.9rem', lineHeight: 1.7 }}>
-        Optimizing applications for speed and efficiency — from bundle
-        size to runtime performance.
+      <h3 className="mb-2 text-[1.5rem]">{"\u26A1"} Performance</h3>
+      <p className="mt-2 text-[0.9rem] leading-[1.7] text-text-secondary">
+        Optimizing applications for speed and efficiency, from bundle size to
+        runtime performance.
       </p>
     </Card>
     <Card>
-      <h3>🔧 Full-Stack</h3>
-      <p style={{ color: 'var(--text-secondary)', marginTop: 'var(--space-sm)', fontSize: '0.9rem', lineHeight: 1.7 }}>
-        Designing and building APIs, databases, and cloud
-        infrastructure to power applications end-to-end.
+      <h3 className="mb-2 text-[1.5rem]">{"\u{1F527}"} Full-Stack</h3>
+      <p className="mt-2 text-[0.9rem] leading-[1.7] text-text-secondary">
+        Designing and building APIs, databases, and cloud infrastructure to
+        power applications end-to-end.
       </p>
     </Card>
   </Grid>
@@ -46,11 +48,17 @@ import { Card, Grid, SectionTitle } from '../../components/common/UIComponents';
 <section>
   <SectionTitle>Interests</SectionTitle>
   <Grid columns={3}>
-    <Card className="interest-item"><span className="interest-icon">🎮</span><span>Game Development</span></Card>
-    <Card className="interest-item"><span className="interest-icon">🎵</span><span>Music Production</span></Card>
-    <Card className="interest-item"><span className="interest-icon">📚</span><span>Reading</span></Card>
-    <Card className="interest-item"><span className="interest-icon">🏔️</span><span>Hiking</span></Card>
-    <Card className="interest-item"><span className="interest-icon">☕</span><span>Coffee Brewing</span></Card>
-    <Card className="interest-item"><span className="interest-icon">🤖</span><span>Machine Learning</span></Card>
+    <Card className="items-center justify-center gap-4 !p-8 text-center">
+      <span className="text-[2.5rem]">{"\u{1F4BB}"}</span>
+      <span>Software Development</span>
+    </Card>
+    <Card className="items-center justify-center gap-4 !p-8 text-center">
+      <span className="text-[2.5rem]">{"\u{1F512}"}</span>
+      <span>Cybersecurity</span>
+    </Card>
+    <Card className="items-center justify-center gap-4 !p-8 text-center">
+      <span className="text-[2.5rem]">{"\u{1F916}"}</span>
+      <span>Machine Learning</span>
+    </Card>
   </Grid>
 </section>

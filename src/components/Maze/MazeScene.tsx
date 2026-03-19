@@ -1,43 +1,47 @@
-import { useMemo } from 'react';
-import * as THREE from 'three';
-import { MAZE_SIZE, CELL_SIZE } from './mazeData';
-import MazeWalls from './MazeWalls';
-import Player from './Player';
-import Portals from './Portals';
-import CameraRig from './CameraRig';
-import type { PortalInfo } from './mazeData';
+import { useMemo, type RefObject } from "react";
+import * as THREE from "three";
+import { MAZE_SIZE, CELL_SIZE } from "./mazeData";
+import MazeWalls from "./MazeWalls";
+import Player from "./Player";
+import Portals from "./Portals";
+import CameraRig from "./CameraRig";
+import type { PortalInfo } from "./mazeData";
 
 interface MazeSceneProps {
   onPlayerMove: (row: number, col: number, worldPos: THREE.Vector3) => void;
   activePortal: PortalInfo | null;
-  playerWorldPos: THREE.Vector3;
+  playerWorldPosRef: RefObject<THREE.Vector3>;
 }
 
-export default function MazeScene({ onPlayerMove, activePortal, playerWorldPos }: MazeSceneProps) {
+export default function MazeScene({
+  onPlayerMove,
+  activePortal,
+  playerWorldPosRef,
+}: MazeSceneProps) {
   const floorSize = MAZE_SIZE * CELL_SIZE;
 
   const floorTexture = useMemo(() => {
-    const canvas = document.createElement('canvas');
+    const canvas = document.createElement("canvas");
     canvas.width = 512;
     canvas.height = 512;
-    const ctx = canvas.getContext('2d')!;
+    const ctx = canvas.getContext("2d")!;
 
-    // Dark gradient floor
-    ctx.fillStyle = '#14142a';
+    ctx.fillStyle = "#14142a";
     ctx.fillRect(0, 0, 512, 512);
 
-    // Subtle grid lines
-    ctx.strokeStyle = 'rgba(108, 92, 231, 0.25)';
+    ctx.strokeStyle = "rgba(108, 92, 231, 0.25)";
     ctx.lineWidth = 1;
     const gridStep = 512 / MAZE_SIZE;
-    for (let i = 0; i <= MAZE_SIZE; i++) {
+
+    for (let index = 0; index <= MAZE_SIZE; index += 1) {
       ctx.beginPath();
-      ctx.moveTo(i * gridStep, 0);
-      ctx.lineTo(i * gridStep, 512);
+      ctx.moveTo(index * gridStep, 0);
+      ctx.lineTo(index * gridStep, 512);
       ctx.stroke();
+
       ctx.beginPath();
-      ctx.moveTo(0, i * gridStep);
-      ctx.lineTo(512, i * gridStep);
+      ctx.moveTo(0, index * gridStep);
+      ctx.lineTo(512, index * gridStep);
       ctx.stroke();
     }
 
@@ -48,7 +52,6 @@ export default function MazeScene({ onPlayerMove, activePortal, playerWorldPos }
 
   return (
     <>
-      {/* Lighting */}
       <ambientLight intensity={0.6} color="#c8c8ff" />
       <directionalLight
         position={[10, 15, 5]}
@@ -63,12 +66,15 @@ export default function MazeScene({ onPlayerMove, activePortal, playerWorldPos }
         shadow-camera-top={20}
         shadow-camera-bottom={-20}
       />
-      <pointLight position={[0, 10, 0]} intensity={1} color="#6c5ce7" distance={40} />
+      <pointLight
+        position={[0, 10, 0]}
+        intensity={1}
+        color="#6c5ce7"
+        distance={40}
+      />
 
-      {/* Fog for atmosphere */}
-      <fog attach="fog" args={['#0a0a0f', 20, 50]} />
+      <fog attach="fog" args={["#0a0a0f", 20, 50]} />
 
-      {/* Floor */}
       <mesh rotation={[-Math.PI / 2, 0, 0]} position={[0, 0, 0]} receiveShadow>
         <planeGeometry args={[floorSize, floorSize]} />
         <meshStandardMaterial
@@ -79,17 +85,10 @@ export default function MazeScene({ onPlayerMove, activePortal, playerWorldPos }
         />
       </mesh>
 
-      {/* Walls */}
       <MazeWalls />
-
-      {/* Portals */}
       <Portals activePortal={activePortal} />
-
-      {/* Player */}
       <Player onPositionChange={onPlayerMove} />
-
-      {/* Camera */}
-      <CameraRig playerWorldPos={playerWorldPos} />
+      <CameraRig playerWorldPosRef={playerWorldPosRef} />
     </>
   );
 }

@@ -1,5 +1,5 @@
-import PageLayout from '../components/common/PageLayout';
-import ReactBasicsContent from '../content/blog/react-basics.mdx';
+import PageLayout from "../components/common/PageLayout";
+import ReactBasicsContent from "../content/blog/react-basics.mdx";
 
 export default function BlogPost() {
   return (
@@ -7,7 +7,7 @@ export default function BlogPost() {
       title="React Basics: Understanding the Virtual DOM"
       accentColor="#fd79a8"
     >
-      <article className="prose markdown-content">
+      <article className="markdown-content mx-auto max-w-[720px]">
         <ReactBasicsContent />
       </article>
     </PageLayout>
