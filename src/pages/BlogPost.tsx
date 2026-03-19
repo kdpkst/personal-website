@@ -7,7 +7,7 @@ export default function BlogPost() {
       title="React Basics: Understanding the Virtual DOM"
       accentColor="#fd79a8"
     >
-      <article className="markdown-content mx-auto max-w-[720px]">
+      <article className="markdown-content mx-auto max-w-[820px]">
         <ReactBasicsContent />
       </article>
     </PageLayout>

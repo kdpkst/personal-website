@@ -14,7 +14,7 @@ export function Card({ children, className = "" }: CardProps) {
   return (
     <div
       className={cn(
-        "flex h-full flex-col rounded-card bg-bg-secondary p-12 transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-[1.02] hover:shadow-card",
+        "flex h-full flex-col rounded-card bg-bg-secondary p-8 md:p-10 xl:p-12 transition-[transform,box-shadow] duration-300 ease-[cubic-bezier(0.25,0.1,0.25,1)] hover:scale-[1.02] hover:shadow-card",
         className,
       )}
     >
@@ -37,8 +37,8 @@ export function Grid({
       className={cn(
         "grid",
         columns === 2
-          ? "grid-cols-[repeat(auto-fill,minmax(320px,1fr))] gap-8"
-          : "grid-cols-[repeat(auto-fill,minmax(260px,1fr))] gap-6",
+          ? "grid-cols-1 gap-6 lg:grid-cols-2 xl:gap-8"
+          : "grid-cols-1 gap-6 md:grid-cols-2 xl:grid-cols-3",
         className,
       )}
     >

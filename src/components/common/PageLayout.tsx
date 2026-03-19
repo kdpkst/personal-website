@@ -46,8 +46,8 @@ export default function PageLayout({
         </div>
       </nav>
 
-      <div className="mx-auto flex w-full max-w-[980px] flex-1 flex-col px-6">
-        <header className="mb-12 mt-12 text-center md:mb-24 md:mt-24">
+      <div className="mx-auto flex w-full max-w-[1180px] flex-1 flex-col px-5 md:px-8">
+        <header className="mb-10 mt-10 text-center md:mb-20 md:mt-20">
           <h1 className="mb-4 text-[2.5rem] font-bold tracking-[-0.03em] text-text-primary md:text-[3.5rem]">
             {title}
           </h1>
