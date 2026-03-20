@@ -1,9 +1,8 @@
-import placeholderImage from "../../assets/images/placeholder.jpg";
 import { Card, Grid, Tag, TagList } from "../../components/common/UIComponents";
 
 export const portfolioPage = {
   ctaArrow: "\u2192",
-  emptyStateLabel: "Details available on request",
+  emptyStateLabel: "Not Available",
   actionLabels: {
     live_demo: "Live Demo",
     source_code: "Source Code",
@@ -16,7 +15,7 @@ export const projects = [
     title: "MonitorMate",
     description:
       "A data monitoring dashboard integrating fragmented, dispersed, and regionally restricted information into one platform.",
-    image: "/assets/images/projects/monitormate.png",
+    image: "/images/portfolio/monitor-mate.png",
     tags: ["React/Next.js", "TypeScript", "Node.js", "MongoDB"],
     live_demo: null,
     source_code: null,
@@ -27,7 +26,7 @@ export const projects = [
     title: "Advanced Amun Honeypot",
     description:
       "Advanced Amum honeypot enhanced original Amun's limited interaction capability with cyber attackers by introducing an advanced functionality of reverse shell spoofing for two specific vulnerabilities.",
-    image: "/assets/images/projects/advanced_amun.png",
+    image: "/images/portfolio/advanced-amun.png",
     tags: [
       "Honeypot",
       "Python",
@@ -46,7 +45,7 @@ export const projects = [
       "Still Not Aware of the Loophole of Unintentional Access to Docker? A Proof of Concept",
     description:
       "Mitigated a Docker port mapping vulnerability that unintentionally exposed containers to public access by an IPTABLES-based approach. Published results as the 4th author.",
-    image: "/assets/images/projects/docker_iptables.webp",
+    image: "/images/portfolio/docker-iptables.webp",
     tags: ["Docker Vulnerability", "cybersecurity research"],
     live_demo: null,
     source_code: null,
@@ -57,7 +56,7 @@ export const projects = [
     title: "Investigation and Countermeasure toward Unintentional Access to Docker Container",
     description:
       "Mitigated a Docker port mapping vulnerability that unintentionally exposed containers to public access by an SDN-based solution. Published results as the 4th author.",
-    image: "/assets/images/projects/docker_sdn.webp",
+    image: "/images/portfolio/docker-sdn.webp",
     tags: ["Docker Vulnerability", "cybersecurity research"],
     live_demo: null,
     source_code: null,
@@ -68,7 +67,7 @@ export const projects = [
     title: "Pet Grooming Salon Appointment System",
     description:
       "Web-based appointment system where customers can make appointments with the pet grooming salon, which also includes an admin dashboard.",
-    image: "/assets/images/projects/placeholder.jpg",
+    image: "/images/portfolio/placeholder.jpg",
     tags: [
       "Spring Boot",
       "Java",
@@ -87,11 +86,11 @@ export const projects = [
   },
   {
     title: "Personal Website",
-    description: "A cyberpunk-themed personal website built with Jekyll.",
-    image: "/assets/images/projects/personal_web.webp",
-    tags: ["Jekyll", "SCSS", "JavaScript", "HTML5", "CSS3"],
-    live_demo: "https://kdpkst.github.io",
-    source_code: "https://github.com/kdpkst/kdpkst.github.io",
+    description: "placeholder",
+    image: "/images/portfolio/personal_web.webp",
+    tags: ["React"],
+    live_demo: null,
+    source_code: null,
     published_paper: null,
     category: "personal",
   },
@@ -104,12 +103,13 @@ export const projectActionKeys = [
 ];
 
 export const handleProjectImageError = (event) => {
+  const placeholderImagePath = "/images/portfolio/placeholder.jpg";
   event.currentTarget.onerror = null;
-  event.currentTarget.src = placeholderImage;
+  event.currentTarget.src = placeholderImagePath;
 };
 
 <div className="px-3 sm:px-4 md:px-6 lg:px-0">
-  <Grid columns={2} className="items-stretch gap-9 md:gap-12 lg:gap-6 xl:gap-8">
+  <Grid columns={2} className="items-stretch gap-9 md:gap-12 lg:gap-6 xl:gap-10">
     {projects.map((project) => {
       const actions = projectActionKeys
         .map((key) => {
