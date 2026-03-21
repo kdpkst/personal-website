@@ -3,7 +3,7 @@ import { Canvas } from "@react-three/fiber";
 import { useNavigate } from "react-router-dom";
 import * as THREE from "three";
 import MazeScene from "../components/Maze/MazeScene";
-import HUD from "../components/common/HUD";
+import HUD from "../components/Maze/HUD";
 import {
   PORTALS,
   gridToWorld,
