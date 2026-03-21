@@ -4,7 +4,7 @@ import { MAZE_SIZE, CELL_SIZE } from "../data/mazeData";
 import MazeWalls from "./MazeWalls";
 import Player from "./Player";
 import Portals from "./Portals";
-import CameraRig from "../../components/Maze/CameraRig";
+import CameraRig from "./CameraRig";
 import type { PortalInfo } from "../data/mazeData";
 
 interface MazeSceneProps {
