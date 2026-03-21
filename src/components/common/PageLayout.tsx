@@ -95,7 +95,7 @@ export default function PageLayout({
 
         <main className="flex-1">{children}</main>
 
-        <footer className="mt-20 pb-8 pt-12 md:pt-16">
+        <footer className="mt-2 pb-8 pt-12 md:pt-16">
           <div className="liquid-glass mx-auto max-w-[920px] overflow-hidden rounded-[28px] border border-white/50 bg-white/45 px-6 py-5 text-center shadow-[0_18px_48px_rgba(15,23,42,0.07),inset_0_1px_0_rgba(255,255,255,0.82)] backdrop-blur-2xl">
             <p className="text-[0.85rem] text-text-muted">
               {"\u00A9"} 2026 Designed and Developed by Jax. Built with React and

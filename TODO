@@ -1,3 +1,7 @@
-1. transfer real data to this site
-2. add liquid glass effect to the page
+optimize liquid glass effect 
+add a search bar in the navigation bar
+
+1. check responsive design UI layout issue
+2. more smooth when hover over the card
+3. optimize modularization: put all messages on the UI to a file?
 3. update the maze
