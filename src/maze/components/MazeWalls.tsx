@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 import * as THREE from 'three';
-import { MAZE_GRID, MAZE_SIZE, CELL_SIZE, WALL } from './mazeData';
+import { MAZE_GRID, MAZE_SIZE, CELL_SIZE, WALL } from '../data/mazeData';
 
 const WALL_HEIGHT = 2.5;
 

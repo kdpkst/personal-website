@@ -1,11 +1,11 @@
 import { useMemo, type RefObject } from "react";
 import * as THREE from "three";
-import { MAZE_SIZE, CELL_SIZE } from "./mazeData";
+import { MAZE_SIZE, CELL_SIZE } from "../data/mazeData";
 import MazeWalls from "./MazeWalls";
 import Player from "./Player";
 import Portals from "./Portals";
-import CameraRig from "./CameraRig";
-import type { PortalInfo } from "./mazeData";
+import CameraRig from "../../components/Maze/CameraRig";
+import type { PortalInfo } from "../data/mazeData";
 
 interface MazeSceneProps {
   onPlayerMove: (row: number, col: number, worldPos: THREE.Vector3) => void;

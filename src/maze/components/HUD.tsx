@@ -1,6 +1,6 @@
 import { useState, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
-import type { PortalInfo } from "../Maze/mazeData";
+import type { PortalInfo } from "../data/mazeData";
 
 interface HUDProps {
   activePortal: PortalInfo | null;

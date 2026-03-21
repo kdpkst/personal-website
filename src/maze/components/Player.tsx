@@ -1,7 +1,7 @@
 import { useRef, useCallback, useEffect } from 'react';
 import { useFrame } from '@react-three/fiber';
 import * as THREE from 'three';
-import { isWalkable, gridToWorld, PLAYER_START } from './mazeData';
+import { isWalkable, gridToWorld, PLAYER_START } from '../data/mazeData';
 
 const MOVE_SPEED = 4; // units per second
 const PLAYER_RADIUS = 0.35;

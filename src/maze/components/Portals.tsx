@@ -2,7 +2,7 @@ import { useRef } from 'react';
 import { useFrame } from '@react-three/fiber';
 import { Text, Float } from '@react-three/drei';
 import * as THREE from 'three';
-import { PORTALS, gridToWorld, type PortalInfo } from './mazeData';
+import { PORTALS, gridToWorld, type PortalInfo } from '../data/mazeData';
 
 interface PortalsProps {
   activePortal: PortalInfo | null;

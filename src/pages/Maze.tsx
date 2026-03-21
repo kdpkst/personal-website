@@ -2,14 +2,14 @@ import { useState, useCallback, useEffect, useRef } from "react";
 import { Canvas } from "@react-three/fiber";
 import { useNavigate } from "react-router-dom";
 import * as THREE from "three";
-import MazeScene from "../components/Maze/MazeScene";
-import HUD from "../components/Maze/HUD";
+import MazeScene from "../maze/components/MazeScene";
+import HUD from "../maze/components/HUD";
 import {
   PORTALS,
   gridToWorld,
   PLAYER_START,
   type PortalInfo,
-} from "../components/Maze/mazeData";
+} from "../maze/data/mazeData";
 
 export default function Maze() {
   const navigate = useNavigate();
