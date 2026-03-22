@@ -141,7 +141,9 @@ export const interests = [
         <Card className="h-full justify-center !p-6 sm:!p-8">
           <TagList className="!mt-0 !justify-center !pt-0">
             {group.items.map((item) => (
-              <Tag key={item}>{item}</Tag>
+              <Tag key={item} className="liquid-bubble-surface liquid-bubble-tag">
+                {item}
+              </Tag>
             ))}
           </TagList>
         </Card>
