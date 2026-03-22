@@ -66,16 +66,16 @@ export default function PageLayout({
             </button>
 
             <label className="order-3 relative block basis-full md:order-2 md:basis-auto md:w-full md:min-w-[300px] md:max-w-[750px] md:justify-self-center">
-              <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[rgba(29,29,31,0.74)]">
+              <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center">
                 <svg
                   aria-hidden="true"
                   viewBox="0 0 24 24"
                   fill="none"
                   stroke="currentColor"
-                  strokeWidth="1.8"
+                  strokeWidth="3"
                   strokeLinecap="round"
                   strokeLinejoin="round"
-                  className="h-4 w-4"
+                  className="h-5 w-5 text-black"
                 >
                   <circle cx="11" cy="11" r="7" />
                   <path d="m20 20-3.5-3.5" />
@@ -87,7 +87,7 @@ export default function PageLayout({
                 onChange={(event) => onSearchChange(event.target.value)}
                 placeholder={searchPlaceholder}
                 aria-label={searchPlaceholder}
-                className="h-11 w-full rounded-full border border-white/45 bg-white/38 pl-11 pr-4 text-[0.9rem] text-text-primary shadow-[0_10px_24px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl outline-none transition-[border-color,background-color,box-shadow] duration-200 placeholder:text-[rgba(29,29,31,0.62)] focus:border-white/60 focus:bg-white/48 focus:shadow-[0_10px_26px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.88)]"
+                className="h-11 w-full rounded-full border border-white/45 bg-white/38 pl-11 pr-4 text-[0.9rem] text-text-primary shadow-[0_10px_24px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl outline-none transition-[border-color,background-color,box-shadow] duration-200 placeholder:font-semibold placeholder:text-[rgba(72,72,73,0.7)] focus:border-white/60 focus:bg-white/48 focus:shadow-[0_10px_26px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.88)]"
               />
             </label>
 
