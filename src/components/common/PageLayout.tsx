@@ -6,6 +6,9 @@ interface PageLayoutProps {
   subtitle?: string;
   children: ReactNode;
   accentColor?: string;
+  searchValue?: string;
+  searchPlaceholder?: string;
+  onSearchChange?: (value: string) => void;
 }
 
 const navItems = [
@@ -19,9 +22,13 @@ export default function PageLayout({
   subtitle,
   children,
   accentColor = "#8eb7ff",
+  searchValue = "",
+  searchPlaceholder = "Search",
+  onSearchChange,
 }: PageLayoutProps) {
   const navigate = useNavigate();
   const location = useLocation();
+  const showSearch = typeof onSearchChange === "function";
   const pageShellStyle = {
     "--page-accent": accentColor,
   } as CSSProperties;
@@ -45,40 +52,107 @@ export default function PageLayout({
       </div>
 
       <div className="sticky top-0 z-[100] px-4 pt-4 sm:px-6 md:pt-5">
-        <nav className="liquid-glass mx-auto flex max-w-[1240px] flex-col gap-3 overflow-hidden rounded-[30px] border border-white/50 bg-white/55 px-4 py-3 shadow-[0_18px_48px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-2xl sm:flex-row sm:items-center sm:justify-between sm:px-6">
-          <button
-            className="inline-flex w-fit items-center gap-2 rounded-full border border-white/45 bg-white/38 px-4 py-2 text-[0.9rem] font-medium text-text-primary shadow-[0_10px_24px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl transition-[transform,background-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-white/54"
-            onClick={() => navigate("/")}
-            id="back-to-maze"
-          >
-            <span className="text-[1.15rem] font-light">{"\u2039"}</span>
-            <span>Back to Maze</span>
-          </button>
+        {showSearch ? (
+          <nav className="liquid-glass mx-auto flex max-w-[1240px] flex-wrap items-center gap-3 overflow-hidden rounded-[30px] border border-white/50 bg-white/55 px-4 py-3 shadow-[0_18px_48px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-2xl sm:px-6 md:grid md:grid-cols-[max-content_minmax(340px,1fr)_max-content] md:items-center md:gap-4">
+            <button
+              className="inline-flex w-fit shrink-0 items-center gap-2 rounded-full border border-white/45 bg-white/38 px-3 py-2 text-[0.82rem] font-medium text-text-primary shadow-[0_10px_24px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl transition-[transform,background-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-white/54 sm:px-4 sm:text-[0.9rem] md:justify-self-start"
+              onClick={() => navigate("/")}
+              id="back-to-maze"
+            >
+              <span className="text-[1.05rem] font-light sm:text-[1.15rem]">
+                {"\u2039"}
+              </span>
+              <span>Back to Maze</span>
+            </button>
 
-          <div className="flex flex-wrap items-center gap-2 sm:justify-end">
-            {navItems.map((item) => {
-              const isActive =
-                item.route === "/blog"
-                  ? location.pathname.startsWith("/blog")
-                  : location.pathname === item.route;
-
-              return (
-                <button
-                  key={item.route}
-                  onClick={() => navigate(item.route)}
-                  className={`rounded-full border px-4 py-2 text-[0.85rem] font-medium backdrop-blur-xl transition-[transform,background-color,box-shadow,color] duration-200 ${
-                    isActive
-                      ? "border-white/55 bg-white/62 text-text-primary shadow-[0_10px_22px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.86)]"
-                      : "border-transparent bg-white/18 text-text-secondary hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/42 hover:text-text-primary hover:shadow-[0_10px_22px_rgba(15,23,42,0.06)]"
-                  }`}
-                  id={item.id}
+            <label className="order-3 relative block basis-full md:order-2 md:basis-auto md:w-full md:min-w-[300px] md:max-w-[750px] md:justify-self-center">
+              <span className="pointer-events-none absolute inset-y-0 left-4 flex items-center text-[rgba(29,29,31,0.74)]">
+                <svg
+                  aria-hidden="true"
+                  viewBox="0 0 24 24"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="1.8"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                  className="h-4 w-4"
                 >
-                  {item.label}
-                </button>
-              );
-            })}
-          </div>
-        </nav>
+                  <circle cx="11" cy="11" r="7" />
+                  <path d="m20 20-3.5-3.5" />
+                </svg>
+              </span>
+              <input
+                type="search"
+                value={searchValue}
+                onChange={(event) => onSearchChange(event.target.value)}
+                placeholder={searchPlaceholder}
+                aria-label={searchPlaceholder}
+                className="h-11 w-full rounded-full border border-white/45 bg-white/38 pl-11 pr-4 text-[0.9rem] text-text-primary shadow-[0_10px_24px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl outline-none transition-[border-color,background-color,box-shadow] duration-200 placeholder:text-[rgba(29,29,31,0.62)] focus:border-white/60 focus:bg-white/48 focus:shadow-[0_10px_26px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.88)]"
+              />
+            </label>
+
+            <div className="order-2 ml-auto flex shrink-0 items-center justify-end gap-1.5 sm:gap-2 md:order-3 md:ml-0 md:flex-nowrap">
+              {navItems.map((item) => {
+                const isActive =
+                  item.route === "/blog"
+                    ? location.pathname.startsWith("/blog")
+                    : location.pathname === item.route;
+
+                return (
+                  <button
+                    key={item.route}
+                    onClick={() => navigate(item.route)}
+                    className={`rounded-full border px-3 py-2 text-[0.78rem] font-medium backdrop-blur-xl transition-[transform,background-color,box-shadow,color] duration-200 sm:px-4 sm:text-[0.85rem] ${
+                      isActive
+                        ? "border-white/55 bg-white/62 text-text-primary shadow-[0_10px_22px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.86)]"
+                        : "border-transparent bg-white/18 text-text-secondary hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/42 hover:text-text-primary hover:shadow-[0_10px_22px_rgba(15,23,42,0.06)]"
+                    }`}
+                    id={item.id}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+          </nav>
+        ) : (
+          <nav className="liquid-glass mx-auto flex max-w-[1240px] items-center justify-between gap-3 overflow-hidden rounded-[30px] border border-white/50 bg-white/55 px-4 py-3 shadow-[0_18px_48px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.85)] backdrop-blur-2xl sm:px-6">
+            <button
+              className="inline-flex shrink-0 items-center gap-2 rounded-full border border-white/45 bg-white/38 px-3 py-2 text-[0.82rem] font-medium text-text-primary shadow-[0_10px_24px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.8)] backdrop-blur-xl transition-[transform,background-color,box-shadow] duration-200 hover:-translate-y-0.5 hover:bg-white/54 sm:px-4 sm:text-[0.9rem]"
+              onClick={() => navigate("/")}
+              id="back-to-maze"
+            >
+              <span className="text-[1.05rem] font-light sm:text-[1.15rem]">
+                {"\u2039"}
+              </span>
+              <span>Back to Maze</span>
+            </button>
+
+            <div className="flex shrink-0 items-center justify-end gap-1.5 sm:gap-2">
+              {navItems.map((item) => {
+                const isActive =
+                  item.route === "/blog"
+                    ? location.pathname.startsWith("/blog")
+                    : location.pathname === item.route;
+
+                return (
+                  <button
+                    key={item.route}
+                    onClick={() => navigate(item.route)}
+                    className={`rounded-full border px-3 py-2 text-[0.78rem] font-medium backdrop-blur-xl transition-[transform,background-color,box-shadow,color] duration-200 sm:px-4 sm:text-[0.85rem] ${
+                      isActive
+                        ? "border-white/55 bg-white/62 text-text-primary shadow-[0_10px_22px_rgba(15,23,42,0.08),inset_0_1px_0_rgba(255,255,255,0.86)]"
+                        : "border-transparent bg-white/18 text-text-secondary hover:-translate-y-0.5 hover:border-white/35 hover:bg-white/42 hover:text-text-primary hover:shadow-[0_10px_22px_rgba(15,23,42,0.06)]"
+                    }`}
+                    id={item.id}
+                  >
+                    {item.label}
+                  </button>
+                );
+              })}
+            </div>
+          </nav>
+        )}
       </div>
 
       <div className="mx-auto flex w-full max-w-[1180px] flex-1 flex-col px-5 md:px-8">

@@ -2,10 +2,12 @@ import Card from "../../components/common/Card";
 import Grid from "../../components/common/Grid";
 import Tag from "../../components/common/Tag";
 import TagList from "../../components/common/TagList";
+import { filterBySearchQuery } from "../../utils/search";
 
 export const portfolioPage = {
   ctaArrow: "\u2192",
   emptyStateLabel: "Not Available",
+  emptySearchLabel: "No projects matched your search.",
   actionLabels: {
     live_demo: "Live Demo",
     source_code: "Source Code",
@@ -111,84 +113,113 @@ export const handleProjectImageError = (event) => {
   event.currentTarget.src = placeholderImagePath;
 };
 
-<div className="px-3 sm:px-4 md:px-6 lg:px-0">
-  <Grid columns={2} className="items-stretch gap-9 md:gap-12 lg:gap-6 xl:gap-10">
-    {projects.map((project) => {
-      const actions = projectActionKeys
-        .map((key) => {
-          const href = project[key];
+{(() => {
+  const filteredProjects = filterBySearchQuery(
+    projects,
+    props.searchQuery,
+    (project) => [
+      project.title,
+      project.description,
+      project.category,
+      ...project.tags,
+    ],
+  );
 
-          if (!href) {
-            return null;
-          }
+  return (
+    <div className="px-3 sm:px-4 md:px-6 lg:px-0">
+      {filteredProjects.length > 0 ? (
+        <Grid
+          columns={2}
+          className="items-stretch gap-9 md:gap-12 lg:gap-6 xl:gap-10"
+        >
+          {filteredProjects.map((project) => {
+            const actions = projectActionKeys
+              .map((key) => {
+                const href = project[key];
 
-          return {
-            key,
-            href,
-            label: portfolioPage.actionLabels[key],
-          };
-        })
-        .filter(Boolean);
+                if (!href) {
+                  return null;
+                }
 
-      return (
-        <Card key={project.title} className="overflow-hidden !p-0">
-          <div className="aspect-[16/9] overflow-hidden bg-bg-tertiary">
-            <img
-              src={project.image}
-              alt={`${project.title} preview`}
-              className="h-full w-full object-cover"
-              loading="lazy"
-              onError={handleProjectImageError}
-            />
-          </div>
+                return {
+                  key,
+                  href,
+                  label: portfolioPage.actionLabels[key],
+                };
+              })
+              .filter(Boolean);
 
-          <div className="flex flex-1 flex-col p-7 md:p-8">
-            <div className="flex flex-col gap-3 pb-4">
-              <div className="flex items-start justify-between gap-4">
-                <div>
-                  <h3 className="text-[1.35rem] font-bold leading-tight text-text-primary md:text-[1.5rem]">
-                    {project.title}
-                  </h3>
+            return (
+              <Card key={project.title} className="overflow-hidden !p-0">
+                <div className="aspect-[16/9] overflow-hidden bg-bg-tertiary">
+                  <img
+                    src={project.image}
+                    alt={`${project.title} preview`}
+                    className="h-full w-full object-cover"
+                    loading="lazy"
+                    onError={handleProjectImageError}
+                  />
                 </div>
-                <span className="shrink-0 rounded-full border border-white/55 bg-white/56 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-text-muted shadow-[0_8px_20px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.84)] backdrop-blur-md">
-                  {project.category}
-                </span>
-              </div>
 
-              <p className="text-[1rem] leading-[1.65] text-text-secondary">
-                {project.description}
-              </p>
+                <div className="flex flex-1 flex-col p-7 md:p-8">
+                  <div className="flex flex-col gap-3 pb-4">
+                    <div className="flex items-start justify-between gap-4">
+                      <div>
+                        <h3 className="text-[1.35rem] font-bold leading-tight text-text-primary md:text-[1.5rem]">
+                          {project.title}
+                        </h3>
+                      </div>
+                      <span className="shrink-0 rounded-full border border-white/55 bg-white/56 px-3 py-1 text-[0.72rem] font-semibold uppercase tracking-[0.08em] text-text-muted shadow-[0_8px_20px_rgba(15,23,42,0.06),inset_0_1px_0_rgba(255,255,255,0.84)] backdrop-blur-md">
+                        {project.category}
+                      </span>
+                    </div>
 
-              <TagList className="!mt-0 !pt-0">
-                {project.tags.map((tag) => (
-                  <Tag key={tag}>{tag}</Tag>
-                ))}
-              </TagList>
-            </div>
+                    <p className="text-[1rem] leading-[1.65] text-text-secondary">
+                      {project.description}
+                    </p>
 
-            <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border-subtle pt-4 sm:flex-nowrap">
-              {actions.length > 0 ? (
-                actions.map((action) => (
-                  <a
-                    key={action.key}
-                    href={action.href}
-                    target="_blank"
-                    rel="noreferrer"
-                    className="whitespace-nowrap text-[0.92rem] font-medium text-accent-primary hover:underline"
-                  >
-                    {action.label}{" "}
-                    <span aria-hidden="true">{portfolioPage.ctaArrow}</span>
-                  </a>
-                ))
-              ) : (
-                <span className="text-[0.88rem] font-medium text-text-muted">
-                  {portfolioPage.emptyStateLabel}
-                </span>
-              )}
-            </div>
-          </div>
+                    <TagList className="!mt-0 !pt-0">
+                      {project.tags.map((tag) => (
+                        <Tag key={tag}>{tag}</Tag>
+                      ))}
+                    </TagList>
+                  </div>
+
+                  <div className="mt-auto flex flex-wrap items-center gap-x-4 gap-y-2 border-t border-border-subtle pt-4 sm:flex-nowrap">
+                    {actions.length > 0 ? (
+                      actions.map((action) => (
+                        <a
+                          key={action.key}
+                          href={action.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="whitespace-nowrap text-[0.92rem] font-medium text-accent-primary hover:underline"
+                        >
+                          {action.label}{" "}
+                          <span aria-hidden="true">{portfolioPage.ctaArrow}</span>
+                        </a>
+                      ))
+                    ) : (
+                      <span className="text-[0.88rem] font-medium text-text-muted">
+                        {portfolioPage.emptyStateLabel}
+                      </span>
+                    )}
+                  </div>
+                </div>
+              </Card>
+            );
+          })}
+        </Grid>
+      ) : (
+        <Card className="items-center text-center !p-10">
+          <h3 className="mb-2 text-[1.3rem] text-text-primary">
+            {portfolioPage.emptySearchLabel}
+          </h3>
+          <p className="text-text-secondary">
+            Try a different keyword for projects, tags, or categories.
+          </p>
         </Card>
-      );
-    })}
-  </Grid>
-</div>
+      )}
+    </div>
+  );
+})()}

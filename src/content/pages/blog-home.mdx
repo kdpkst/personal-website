@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import Card from "../../components/common/Card";
+import { filterBySearchQuery } from "../../utils/search";
 
 export const blogPosts = [
   {
@@ -14,24 +15,44 @@ export const blogPosts = [
 
 export const blogHomePage = {
   metaSeparator: "\u2022",
+  emptySearchLabel: "No posts matched your search.",
 };
 
-<div className="flex flex-col gap-4">
-  {blogPosts.map((post) => (
-    <Link
-      key={post.route}
-      to={post.route}
-      className="block no-underline hover:no-underline"
-    >
-      <Card>
-        <h3 className="mb-2 text-[1.5rem]">{post.title}</h3>
-        <p className="mb-2 text-text-secondary">{post.excerpt}</p>
-        <div className="flex items-center gap-2 text-[0.8rem] text-text-muted">
-          <span>Posted on {post.publishedAt}</span>
-          <span>{blogHomePage.metaSeparator}</span>
-          <span>{post.readTime}</span>
-        </div>
-      </Card>
-    </Link>
-  ))}
-</div>
+{(() => {
+  const filteredPosts = filterBySearchQuery(
+    blogPosts,
+    props.searchQuery,
+    (post) => [post.title, post.excerpt, post.publishedAt, post.readTime],
+  );
+
+  return filteredPosts.length > 0 ? (
+    <div className="flex flex-col gap-4">
+      {filteredPosts.map((post) => (
+        <Link
+          key={post.route}
+          to={post.route}
+          className="block no-underline hover:no-underline"
+        >
+          <Card>
+            <h3 className="mb-2 text-[1.5rem]">{post.title}</h3>
+            <p className="mb-2 text-text-secondary">{post.excerpt}</p>
+            <div className="flex items-center gap-2 text-[0.8rem] text-text-muted">
+              <span>Posted on {post.publishedAt}</span>
+              <span>{blogHomePage.metaSeparator}</span>
+              <span>{post.readTime}</span>
+            </div>
+          </Card>
+        </Link>
+      ))}
+    </div>
+  ) : (
+    <Card className="items-center text-center !p-10">
+      <h3 className="mb-2 text-[1.3rem] text-text-primary">
+        {blogHomePage.emptySearchLabel}
+      </h3>
+      <p className="text-text-secondary">
+        Try a different keyword from the post title or summary.
+      </p>
+    </Card>
+  );
+})()}
