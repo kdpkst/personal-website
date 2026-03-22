@@ -1,77 +1,212 @@
-# 3D Interactive Portfolio
+# Personal Website
 
-Welcome to your personalized 3D portfolio! This project is a unique blend of a browser-based 3D exploratory experience and a traditional, content-rich portfolio website.
+This repo is a React + Vite personal website with two main parts:
 
-## 🚀 Quick Start
+- a 3D maze landing page built with React Three Fiber
+- a set of content pages for About, Portfolio, and Blog
 
-1. **Run Development Server**
-   ```bash
-   pnpm run dev
-   ```
+The site uses a hybrid styling approach:
 
-2. **Explore**
-   Navigate the maze using **Arrow Keys** or **WASD**. Approach a portal (About, CV, or Portfolio) and press **Enter** to jump to that page.
+- Tailwind CSS for layout, spacing, sizing, and most component styling
+- custom CSS in `src/index.css` for global tokens, shared effects, and fine visual details
 
----
+## Stack
 
-## 🏗️ Architecture & Codebase Structure
+- React 19
+- Vite
+- React Router
+- MDX
+- Tailwind CSS 4
+- Three.js
+- `@react-three/fiber`
+- `@react-three/drei`
 
-The project uses a hybrid architecture that seamlessly transitions between a 3D scene and standard React pages. Content is managed using MDX, allowing you to write in Markdown with React components.
+## Scripts
+
+Install dependencies:
+
+```bash
+pnpm install
+```
+
+Run the dev server:
+
+```bash
+pnpm dev
+```
+
+Create a production build:
+
+```bash
+pnpm build
+```
+
+Run lint:
+
+```bash
+pnpm lint
+```
+
+## Routes
+
+- `/` -> 3D maze landing page
+- `/about` -> About page
+- `/portfolio` -> Portfolio page
+- `/blog` -> Blog home
+- `/blog/:slug` -> Blog post page
+
+## Current Structure
 
 ```text
 src/
-├── App.tsx                # Main router configuration
-├── main.tsx               # App entry point
-├── index.css              # Global styles and CSS variables
-├── components/            # Reusable React components
-│   ├── common/            # Shared UI elements (HUD, PageLayout, Cards)
-│   └── Maze/              # 3D game engine components (Scene, Player, Walls)
-├── content/               # MDX content files
-│   ├── blogs/             # Individual blog post entries
-│   └── pages/             # Page content (About, Portfolio, Blog Home)
-└── pages/                 # Top-level route components
-    ├── About.tsx          # About page route
-    ├── BlogHome.tsx       # Main blog feed route
-    ├── BlogPost.tsx       # Individual blog post layout
-    ├── Maze.tsx           # The 3D maze homepage route  
-    └── Portfolio.tsx      # Portfolio page route
+  App.tsx
+  main.tsx
+  index.css
+  mdx.d.ts
+
+  components/
+    About/
+      SectionTitle.tsx
+    common/
+      Card.tsx
+      Grid.tsx
+      PageLayout.tsx
+      ScrollToTop.tsx
+      Tag.tsx
+      TagList.tsx
+
+  content/
+    blog/
+      react-basics.mdx
+    pages/
+      about.mdx
+      blog-home.mdx
+      portfolio.mdx
+
+  maze/
+    components/
+      CameraRig.tsx
+      HUD.tsx
+      MazeScene.tsx
+      MazeWalls.tsx
+      Player.tsx
+      Portals.tsx
+    data/
+      mazeData.ts
+
+  pages/
+    About.tsx
+    BlogHome.tsx
+    BlogPost.tsx
+    Maze.tsx
+    Portfolio.tsx
+
+  utils/
+    cn.ts
+    search.ts
 ```
 
-### Key Technologies
-- **@react-three/fiber & @react-three/drei**: Powers the 3D maze environment.
-- **react-router-dom**: Handles page transitions and routing.
-- **MDX**: Allows seamless mixing of Markdown and React components for content generation.
+## Architecture Notes
 
----
+### App Shell
 
-## 🛠️ How to Incrementally Develop
+- `src/main.tsx` mounts the app inside `BrowserRouter`
+- `src/App.tsx` defines the route table
+- `src/components/common/ScrollToTop.tsx` resets scroll position on route changes
 
-### 1. Adding More Blogs
-Currently, `BlogPost.tsx` provides a generic container but is hardcoded to a single demo post. To add more posts:
-1. **Create Content**: Create a new MDX file in `src/content/blogs/` (e.g., `my-new-post.mdx`). Write your content using standard Markdown.
-2. **List It**: Open `src/content/pages/blog-home.mdx`. Add a new `<Link>` wrapping a `<Card>` component to list your new post, pointing to the desired route (e.g., `/blog/my-new-post`).
-3. **Handle Routes**: Update `src/pages/BlogPost.tsx` to conditionally map the `useParams().slug` to the correct MDX import, or adjust `src/App.tsx` directly to manually register individual explicitly defined routes for each explicit post.
+### Maze
 
-### 2. Upgrading the Maze Layout
-1. Open `src/components/Maze/mazeData.ts`.
-2. Edit the numbers in the `MAZE_GRID`. `1` is a wall, `0` is a path.
-3. Make the maze bigger or create new paths.
-4. To add a new portal, assign a new number to an empty space (e.g., `5`) and register its target route in the `PORTALS` array within the same file.
+- `src/pages/Maze.tsx` is the landing page
+- maze rendering lives under `src/maze/components/`
+- maze layout, player spawn, and portal definitions live in `src/maze/data/mazeData.ts`
 
-### 3. Modifying Existing Pages
-- Content for the core text-heavy pages is isolated in `src/content/pages/` (like `about.mdx` or `portfolio.mdx`).
-- Keep page copy, links, lists, and metadata in exported variables at the top of each `src/content/pages/*.mdx` file, then render from those variables below. This keeps page updates maintainable and consistent.
-- After updating those variables, save the file and the changes flow into the respective `src/pages/*.tsx` components.
+### Content Pages
 
-### 4. Direct Navigation (Skip the Maze)
-If you want to add a permanent sidebar or a different navigation style that persists across the site, modify `src/components/common/HUD.tsx`. It handles the ☰ menu state and direct overlay UI.
+- `src/pages/About.tsx`, `src/pages/Portfolio.tsx`, and `src/pages/BlogHome.tsx` are route wrappers
+- shared page chrome lives in `src/components/common/PageLayout.tsx`
+- page content is stored in `src/content/pages/*.mdx`
 
-### 5. Tweak the 3D Visuals
-- **Lighting**: In `src/components/Maze/MazeScene.tsx`, adjust the `intensity` of `ambientLight` or `directionalLight`.
-- **Atmosphere**: Change the `#0a0a0f` color in the `<fog>` tag in `MazeScene.tsx` to change the "void" effect's color distance.
-- **Materials**: In `src/components/Maze/MazeWalls.tsx` or `Player.tsx`, adjust properties like `color`, `metalness`, or `roughness` of the `meshStandardMaterial`.
+### Blog Posts
 
----
+- blog post content lives in `src/content/blog/`
+- the blog list is defined in `src/content/pages/blog-home.mdx`
+- the current post page is rendered by `src/pages/BlogPost.tsx`
+- right now, `BlogPost.tsx` imports a specific MDX post directly, so adding more posts requires updating both the blog list and the post page wiring
 
-## 🎨 Styling Tips
-Most styling is controlled via **CSS Variables** defined in `src/index.css`. Changing variables like `--accent-primary` or root colors there will re-theme the highlight colors and glowing effects across the entire site instantly!
+## MDX Content Convention
+
+For files in `src/content/pages/`:
+
+- keep page data in exported variables near the top of the file
+- render the page UI from those variables below
+- prefer mapping arrays/objects instead of hardcoding repeated markup
+
+This keeps content edits maintainable and reduces layout drift.
+
+## Search
+
+Search is currently enabled in:
+
+- Portfolio
+- Blog home
+
+Implementation notes:
+
+- page-level search state lives in `src/pages/Portfolio.tsx` and `src/pages/BlogHome.tsx`
+- shared filtering logic lives in `src/utils/search.ts`
+- the navbar search UI is provided by `src/components/common/PageLayout.tsx`
+
+## Styling
+
+Primary styling sources:
+
+- Tailwind utility classes in route components, MDX content, and shared components
+- global theme tokens and custom effects in `src/index.css`
+
+If you want to change the overall look first, start in:
+
+- `src/index.css`
+- `src/components/common/PageLayout.tsx`
+
+If you want to change content-page layout pieces, look at:
+
+- `src/components/common/Card.tsx`
+- `src/components/common/Grid.tsx`
+- `src/components/common/Tag.tsx`
+- `src/components/common/TagList.tsx`
+
+## Common Update Tasks
+
+### Edit About / Portfolio / Blog Home
+
+Update the corresponding MDX file in:
+
+- `src/content/pages/about.mdx`
+- `src/content/pages/portfolio.mdx`
+- `src/content/pages/blog-home.mdx`
+
+### Add or Update Blog Posts
+
+1. Add or edit the MDX file under `src/content/blog/`
+2. Update the post listing in `src/content/pages/blog-home.mdx`
+3. Update `src/pages/BlogPost.tsx` so the route renders the correct MDX content
+
+### Change Maze Layout or Portals
+
+Edit:
+
+- `src/maze/data/mazeData.ts`
+
+That file controls:
+
+- maze grid layout
+- portal positions
+- portal route targets
+- player start position
+
+## Current Development Rules
+
+- keep maze-related behavior isolated unless the task is explicitly about the maze
+- prefer shared utilities/components over duplicating logic
+- for `src/content/pages/*.mdx`, keep data in variables and render from them
+- keep responsive behavior correct by default, not as a follow-up fix
