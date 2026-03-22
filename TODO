@@ -1,7 +1,21 @@
-optimize liquid glass effect 
-add a search bar in the navigation bar
+update readme and then deploy
 
-1. check responsive design UI layout issue
-2. more smooth when hover over the card
-3. optimize modularization: put all messages on the UI to a file?
-3. update the maze
+implement the MVP of maze
+
+improve nav bar: make it collapsible
+
+improve nav bar: user can control it to move to top or bottom
+
+add sliding to next page function (mobile: touch to slide; computer: left and right arrow)
+
+improve searching engine: semantic search + keyword matching searching
+
+re-structure css file, makeing it more modularized
+
+implement more smooth animation when hover over the card
+
+blog section dev
+
+optimize modularization: put all messages on the UI to a file?
+
+optmize "liquid glass bubble" to replicate Apple's design
