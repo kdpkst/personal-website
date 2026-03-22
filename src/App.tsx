@@ -4,16 +4,20 @@ import About from "./pages/About";
 import BlogHome from "./pages/BlogHome";
 import Portfolio from "./pages/Portfolio";
 import BlogPost from "./pages/BlogPost";
+import ScrollToTop from "./components/common/ScrollToTop";
 
 function App() {
   return (
-    <Routes>
-      <Route path="/" element={<Maze />} />
-      <Route path="/about" element={<About />} />
-      <Route path="/portfolio" element={<Portfolio />} />
-      <Route path="/blog" element={<BlogHome />} />
-      <Route path="/blog/:slug" element={<BlogPost />} />
-    </Routes>
+    <>
+      <ScrollToTop />
+      <Routes>
+        <Route path="/" element={<Maze />} />
+        <Route path="/about" element={<About />} />
+        <Route path="/portfolio" element={<Portfolio />} />
+        <Route path="/blog" element={<BlogHome />} />
+        <Route path="/blog/:slug" element={<BlogPost />} />
+      </Routes>
+    </>
   );
 }
 
