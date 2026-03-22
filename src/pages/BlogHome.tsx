@@ -9,7 +9,7 @@ export default function BlogHome() {
   return (
     <PageLayout
       title="My Blog (TBC: Still in Dev)"
-      subtitle="Thoughts on software engineering, UI design, and 3D."
+      subtitle="Thoughts on technology and finance"
       accentColor="#fd79a8"
       searchValue={searchQuery}
       searchPlaceholder="Search posts"

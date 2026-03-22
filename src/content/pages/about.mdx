@@ -6,7 +6,7 @@ import TagList from "../../components/common/TagList";
 
 export const aboutPage = {
   intro:
-    "I build clean, interactive web experiences with a focus on thoughtful frontend engineering, polished UI, and maintainable product work. If you share similar passions or want to collaborate on a project, I'd love to connect. Feel free to reach out!",
+    "Hi there! I'm Jax, mainly interested in technology and finance. I'm currently working in healthcare software industry. If you share similar interests or would like to collaborate on a project, I'd love to connect. Feel free to reach out!",
   interestsTitle: "Interests",
 };
 
@@ -77,15 +77,15 @@ export const SocialIcon = ({ name }) => {
 export const abilityGroups = [
   {
     title: "Programming Languages",
-    items: ["TypeScript", "JavaScript", "HTML", "CSS", "SQL"],
+    items: ["Java", "Python", "C", "SQL", "TypeScript", "JavaScript"],
   },
   {
     title: "Frameworks",
-    items: ["React", "Tailwind CSS", "Vite", "Spring"],
+    items: ["React", "Spring"],
   },
   {
     title: "Tools & Infrastructure",
-    items: ["Redis", "Nginx", "Docker", "Git"],
+    items: ["Docker", "Git"],
   },
 ];
 
@@ -145,7 +145,10 @@ export const interests = [
         <Card className="h-full justify-center !p-6 sm:!p-8">
           <TagList className="!mt-0 !justify-center !pt-0">
             {group.items.map((item) => (
-              <Tag key={item} className="liquid-bubble-surface liquid-bubble-tag">
+              <Tag
+                key={item}
+                className="liquid-bubble-surface liquid-bubble-tag"
+              >
                 {item}
               </Tag>
             ))}

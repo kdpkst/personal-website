@@ -58,7 +58,8 @@ export const projects = [
     category: "personal",
   },
   {
-    title: "Investigation and Countermeasure toward Unintentional Access to Docker Container",
+    title:
+      "Investigation and Countermeasure toward Unintentional Access to Docker Container",
     description:
       "Mitigated a Docker port mapping vulnerability that unintentionally exposed containers to public access by an SDN-based solution. Published results as the 4th author.",
     image: "/images/portfolio/docker-sdn.webp",
@@ -91,14 +92,15 @@ export const projects = [
   },
   {
     title: "Personal Website",
-    description: "placeholder",
+    description: "A personal website that combines a browser-based maze game with clean content pages for About, Portfolio, and Blog. It balances interactive exploration with a minimalist, maintainable frontend.",
     image: "/images/portfolio/personal_web.webp",
-    tags: ["React"],
+    tags: ["React", "Vite", "TypeScript", "Tailwind CSS", "Three.js", "MDX"],
     live_demo: null,
-    source_code: null,
+    source_code: "https://github.com/kdpkst/personal-website",
     published_paper: null,
     category: "personal",
-  },
+
+},
 ];
 
 export const projectActionKeys = [
@@ -114,28 +116,29 @@ export const handleProjectImageError = (event) => {
 };
 
 {(() => {
-  const filteredProjects = filterBySearchQuery(
-    projects,
-    props.searchQuery,
-    (project) => [
-      project.title,
-      project.description,
-      project.category,
-      ...project.tags,
-    ],
-  );
+const filteredProjects = filterBySearchQuery(
+projects,
+props.searchQuery,
+(project) => [
+project.title,
+project.description,
+project.category,
+...project.tags,
+],
+);
 
-  return (
-    <div className="px-3 sm:px-4 md:px-6 lg:px-0">
-      {filteredProjects.length > 0 ? (
-        <Grid
+return (
+
+<div className="px-3 sm:px-4 md:px-6 lg:px-0">
+{filteredProjects.length > 0 ? (
+<Grid
           columns={2}
           className="items-stretch gap-9 md:gap-12 lg:gap-6 xl:gap-10"
         >
-          {filteredProjects.map((project) => {
-            const actions = projectActionKeys
-              .map((key) => {
-                const href = project[key];
+{filteredProjects.map((project) => {
+const actions = projectActionKeys
+.map((key) => {
+const href = project[key];
 
                 if (!href) {
                   return null;
@@ -221,5 +224,6 @@ export const handleProjectImageError = (event) => {
         </Card>
       )}
     </div>
-  );
+
+);
 })()}
