@@ -1,9 +1,11 @@
 import { useState, type CSSProperties } from "react";
 import { useNavigate } from "react-router-dom";
-import type { PortalInfo } from "../data/mazeData";
+import type { GridPosition, PortalInfo } from "../data/mazeData";
+import MazeMinimap from "./MazeMinimap";
 
 interface HUDProps {
   activePortal: PortalInfo | null;
+  playerCell: GridPosition;
 }
 
 const navItems = [
@@ -27,12 +29,14 @@ const navItems = [
   },
 ] as const;
 
-export default function HUD({ activePortal }: HUDProps) {
+export default function HUD({ activePortal, playerCell }: HUDProps) {
   const [menuOpen, setMenuOpen] = useState(false);
   const navigate = useNavigate();
 
   return (
     <div className="pointer-events-none absolute inset-0 z-10 flex flex-col p-6">
+      <MazeMinimap playerCell={playerCell} />
+
       <div
         className="pointer-events-auto absolute right-6 top-6 z-20 flex flex-col items-end gap-2"
         onMouseEnter={() => setMenuOpen(true)}
@@ -97,9 +101,9 @@ export default function HUD({ activePortal }: HUDProps) {
       )}
 
       <div className="pointer-events-none absolute bottom-6 left-1/2 flex -translate-x-1/2 items-center gap-2 text-[0.65rem] tracking-[0.05em] text-text-muted sm:text-[0.75rem]">
-        <span>{"\u2190 \u2191 \u2193 \u2192"} to move</span>
+        <span>WASD + mouse look</span>
         <span>{"\u2022"}</span>
-        <span>Enter to interact</span>
+        <span>Enter to open the door</span>
       </div>
     </div>
   );

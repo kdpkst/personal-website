@@ -1,19 +1,22 @@
-implement the MVP of maze
-
 improve searching engine: semantic search + keyword matching searching
 
 re-structure css file, makeing it more modularized
-
-add sliding to next page function (mobile: touch to slide; computer: left and right arrow)
 
 improve nav bar: make it collapsible
 
 improve nav bar: user can control it to move to top or bottom
 
-implement more smooth animation when hover over the card
+optimize modularization: put all messages on the UI to a file?
 
 blog section dev
 
-optimize modularization: put all messages on the UI to a file?
 
-optmize "liquid glass bubble" to replicate Apple's design
+
+Backlog:
+1. improve the maze game:
+   (1) Mobile UI Adaptation
+   (2) Add a Virtual Joystick for mobile device
+   (3) optimze the game (e.g., game scene) to make it more realistic
+2. optmize "liquid glass bubble" to replicate Apple's design
+3. add sliding to next page function (mobile: touch to slide; computer: left and right arrow)
+4. implement more smooth animation when hover over the card
