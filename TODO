@@ -1,14 +1,14 @@
 implement the MVP of maze
 
-improve nav bar: make it collapsible
-
-improve nav bar: user can control it to move to top or bottom
-
-add sliding to next page function (mobile: touch to slide; computer: left and right arrow)
-
 improve searching engine: semantic search + keyword matching searching
 
 re-structure css file, makeing it more modularized
+
+add sliding to next page function (mobile: touch to slide; computer: left and right arrow)
+
+improve nav bar: make it collapsible
+
+improve nav bar: user can control it to move to top or bottom
 
 implement more smooth animation when hover over the card
 
